@@ -25,9 +25,11 @@ RUN \
 ADD etc/aerospike/aerospike.conf.template /etc/aerospike/aerospike.conf.template
 ADD usr/local/bin/templater.lua /usr/local/bin/templater.lua
 ADD usr/local/share/lua/5.2/fwwrt/simplelp.lua /usr/local/share/lua/5.2/fwwrt/simplelp.lua
+ADD aerospike-autoconfig /aerospike-autoconfig
 
 # Mount the Aerospike data directory
-VOLUME ["/opt/aerospike/data"]
+VOLUME ["/storage/data"]
+VOLUME ["/storage/logs"]
 
 # Expose Aerospike ports
 #
@@ -39,4 +41,5 @@ VOLUME ["/opt/aerospike/data"]
 EXPOSE 3000 3001 3002 3003
 
 # Execute the run script in foreground mode
-CMD ["/usr/bin/asd","--foreground"]
+
+CMD ["/aerospike-autoconfig"]

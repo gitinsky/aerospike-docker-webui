@@ -1,0 +1,7 @@
+#!/bin/bash -eux
+
+export MEM_USE="$(($(grep '^MemTotal:[[:space:]]' /proc/meminfo|awk '{print $2}')*$MEM_PC/100))"
+
+/usr/local/bin/templater.lua < /etc/aerospike/aerospike.conf.template | tee /etc/aerospike/aerospike.conf
+
+exec /usr/bin/asd --foreground
