@@ -12,7 +12,7 @@ ENV AEROSPIKE_SHA256 80c23ea858278419297c51d8fd924ac64d7b62684b24334440c16725ba8
 # Install Aerospike
 RUN \
   apt-get update -y \
-  && apt-get install -y wget logrotate ca-certificates lua5.1 \
+  && apt-get install -y wget logrotate ca-certificates lua5.2 \
   && wget "https://www.aerospike.com/artifacts/aerospike-server-community/${AEROSPIKE_VERSION}/aerospike-server-community-${AEROSPIKE_VERSION}-debian7.tgz" -O aerospike-server.tgz \
   && echo "$AEROSPIKE_SHA256 *aerospike-server.tgz" | sha256sum -c - \
   && mkdir aerospike \
