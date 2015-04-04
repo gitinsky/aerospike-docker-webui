@@ -28,7 +28,7 @@ network {
 		port 3002
 		mesh-port 3002
         <%for peerAddr in os.getenv("CLUSTER_ADDRS"):gmatch("[^,]+") do%>
-        mesh-seed-address-port <%=peerAddrADDR%> 3002
+        mesh-seed-address-port <%=peerAddr%> 3002
         <%end%>
 		interval 150
 		timeout 10
