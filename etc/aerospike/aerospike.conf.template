@@ -28,6 +28,7 @@ network {
     mode mesh
     port 3002
     mesh-port 3002
+    address <%=os.getenv("NODE_ADDR")%>
     <%for peerAddr in os.getenv("CLUSTER_ADDRS"):gmatch("[^,]+") do%>
     mesh-address <%=peerAddr%>
     <%end%>
