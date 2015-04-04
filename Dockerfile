@@ -22,7 +22,8 @@ RUN \
   && rm -rf aerospike-server.tgz aerospike /var/lib/apt/lists/*
 
 # Add the Aerospike configuration specific to this dockerfile
-ADD aerospike.conf /etc/aerospike/aerospike.conf
+ADD etc/aerospike/aerospike.conf.template /etc/aerospike/aerospike.conf.template
+ADD usr/local/bin/templater.lua /usr/local/bin/templater.lua
 
 # Mount the Aerospike data directory
 VOLUME ["/opt/aerospike/data"]
