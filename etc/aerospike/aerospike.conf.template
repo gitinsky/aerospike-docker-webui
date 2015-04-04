@@ -21,6 +21,7 @@ network {
   service {
     address any
     port 3000
+    access-address <%=os.getenv("NODE_ADDR")%>
   }
   heartbeat {
     mode mesh
