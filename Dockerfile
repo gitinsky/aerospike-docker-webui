@@ -24,6 +24,7 @@ RUN \
 # Add the Aerospike configuration specific to this dockerfile
 ADD etc/aerospike/aerospike.conf.template /etc/aerospike/aerospike.conf.template
 ADD usr/local/bin/templater.lua /usr/local/bin/templater.lua
+ADD usr/local/share/lua/5.1/fwwrt/simplelp.lua /usr/local/share/lua/5.1/fwwrt/simplelp.lua
 
 # Mount the Aerospike data directory
 VOLUME ["/opt/aerospike/data"]
