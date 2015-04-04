@@ -1,53 +1,53 @@
 service {
-	user root
-	group root
-	paxos-single-replica-limit 1
-	pidfile /var/run/aerospike/asd.pid
-	service-threads 4
-	transaction-queues 4
-	transaction-threads-per-queue 4
-	proto-fd-max 15000
+  user root
+  group root
+  paxos-single-replica-limit 1
+  pidfile /var/run/aerospike/asd.pid
+  service-threads 4
+  transaction-queues 4
+  transaction-threads-per-queue 4
+  proto-fd-max 15000
 }
 
 logging {
-	file /storage/logs/aerospike.log {
-		context any info
-	}
-	console {
-		context any info
-	}
+  file /storage/logs/aerospike.log {
+    context any info
+  }
+  console {
+    context any info
+  }
 }
 network {
-	service {
-		address any
-		port 3000
-		access-address <%=os.getenv("NODE_ADDR")%>
-	}
-	heartbeat {
-		mode mesh
-		port 3002
-		mesh-port 3002
-        mesh-address <%=os.getenv("LOCAL_ADDR")%>
-        <%for peerAddr in os.getenv("CLUSTER_ADDRS"):gmatch("[^,]+") do%>
-        mesh-seed-address-port <%=peerAddr%> 3002
-        <%end%>
-		interval 150
-		timeout 10
-	}
-	fabric {
-		port 3001
-	}
-	info {
-		port 3003
-	}
+  service {
+    address any
+    port 3000
+    network-interface-name eth0
+    access-address <%=os.getenv("NODE_ADDR")%>
+  }
+  heartbeat {
+    mode mesh
+    port 3002
+    mesh-port 3002
+    <%for peerAddr in os.getenv("CLUSTER_ADDRS"):gmatch("[^,]+") do%>
+    mesh-seed-address-port <%=peerAddr%> 3002
+    <%end%>
+    interval 150
+    timeout 10
+  }
+  fabric {
+    port 3001
+  }
+  info {
+    port 3003
+  }
 }
 namespace testdata {
-	replication-factor 3
-	memory-size <%=os.getenv("MEM_USE")%>K
-	default-ttl 0
-	storage-engine device {
-		file /storage/data/testdata.dat
-		filesize 5T
-		data-in-memory true
-	}
+  replication-factor 3
+  memory-size <%=os.getenv("MEM_USE")%>K
+  default-ttl 0
+  storage-engine device {
+    file /storage/data/testdata.dat
+    filesize 5T
+    data-in-memory true
+  }
 }
