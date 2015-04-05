@@ -24,12 +24,10 @@ network {
     access-address <%=os.getenv("NODE_ADDR")%>
   }
   heartbeat {
-    mode mesh
-    port 3002
-    <%for peerAddr in os.getenv("CLUSTER_ADDRS"):gmatch("[^,]+") do%>
-    mesh-seed-address-port <%=peerAddr%> 3002
-    <%end%>
-    interval 150
+    mode multicast
+    address 239.1.99.2
+    port 9918
+    interface-address <%=os.getenv("NODE_ADDR")%> interval 150
     timeout 10
   }
   fabric {
