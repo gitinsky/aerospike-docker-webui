@@ -44,6 +44,6 @@ namespace testdata {
   storage-engine device {
     file /storage/data/testdata.dat
     filesize 5T
-    data-in-memory true
+    data-in-memory false
   }
 }
