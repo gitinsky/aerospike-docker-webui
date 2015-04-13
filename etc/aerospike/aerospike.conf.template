@@ -24,7 +24,6 @@ network {
   }
   fabric {
     port 3001
-    access-address <%=os.getenv("NODE_INT_ADDR")%> virtual
   }
   heartbeat {
     port 3002
