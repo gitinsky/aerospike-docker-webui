@@ -29,7 +29,7 @@ network {
   heartbeat {
     port 3002
     mode mesh
-    <%for peerAddr os.getenv("CLUSTER_ADDRS"):gmatch("[^,]+") do%>
+    <%for peerAddr in os.getenv("CLUSTER_ADDRS"):gmatch("[^,]+") do%>
     mesh-seed-address-port <%=peerAddr%> 3002
     <%end%>
     interval 150
