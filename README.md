@@ -15,7 +15,8 @@ sudo docker run \
   -e CLUSTER_ADDRS="comma separated list of addresses" \
   -e NODE_EXT_ADDR="$(ip addr show dev eth0|grep -P '^\s*inet\s+'|tr '/' ' '|awk '{print $2}')" \
   -e NODE_INT_ADDR="$(ip addr show dev eth1|grep -P '^\s*inet\s+'|tr '/' ' '|awk '{print $2}')" \
-  -p 3000:3000 -p 3001:3001 -p 3002:3002 -p 3003:3003 \
+  -p 3000:3000 -p 3001:3001 -p 3002:3002 -p 3003:3003 -p 9918:9918 \
+  --net=host \
   -v /storage/data:/storage/data \
   -v /storage/logs:/storage/logs \
   -t -i gitinsky/aerospike-binstore

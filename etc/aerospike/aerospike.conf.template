@@ -19,22 +19,22 @@ logging {
 }
 network {
   service {
+    address <%=os.getenv("NODE_EXT_ADDR")%>
     port 3000
-    access-address <%=os.getenv("NODE_EXT_ADDR")%> virtual
   }
   fabric {
+    address <%=os.getenv("NODE_INT_ADDR")%>
     port 3001
   }
   heartbeat {
-    port 3002
-    mode mesh
-    <%for peerAddr in os.getenv("CLUSTER_ADDRS"):gmatch("[^,]+") do%>
-    mesh-seed-address-port <%=peerAddr%> 3002
-    <%end%>
-    interval 150
-    timeout  20
+    mode multicast
+    address 239.1.99.2
+    port 9918
+    interface-address <%=os.getenv("NODE_INT_ADDR")%> interval 150
+    timeout 10
   }
   info {
+    address <%=os.getenv("NODE_INT_ADDR")%>
     port 3003
   }
 }
