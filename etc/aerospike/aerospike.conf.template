@@ -39,13 +39,23 @@ network {
     port 3003
   }
 }
-namespace testdata {
+namespace storebig {
   replication-factor 3
-  memory-size <%=os.getenv("MEM_USE")%>K
+  memory-size <%=os.getenv("MEM_USE_BIG")%>K
   default-ttl 0
   storage-engine device {
-    file /storage/data/testdata.dat
-    filesize 5T
+    file /storage/data/big.dat
+    filesize 3T
     data-in-memory false
+  }
+}
+namespace storefast {
+  replication-factor 3
+  memory-size <%=os.getenv("MEM_USE_FAST")%>K
+  default-ttl 0
+  storage-engine device {
+    file /storage/data/fast.dat
+    filesize <%=os.getenv("MEM_USE_FAST")%>K
+    data-in-memory true
   }
 }
