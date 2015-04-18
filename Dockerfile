@@ -14,8 +14,6 @@ RUN apt-get update -y
 RUN apt-get install -y wget logrotate ca-certificates gcc python python-dev
 RUN wget "http://www.aerospike.com/download/amc/${AEROSPIKE_VERSION}/artifact/debian6" -O amc-server.deb
 RUN echo "$AEROSPIKE_SHA256 *amc-server.deb" | sha256sum -c -
-RUN mkdir aerospike
-RUN tar xzf aerospike-server.tgz --strip-components=1 -C aerospike
 RUN dpkg -i amc-server.deb
 RUN apt-get purge -y --auto-remove wget ca-certificates
 RUN rm -rf amc-server.deb /var/lib/apt/lists/*
