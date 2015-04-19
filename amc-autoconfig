@@ -8,5 +8,5 @@ CONFIG="/etc/amc/config/gunicorn_config.py"
 
 /usr/local/bin/templater.lua < "${CONFIG}.template" | tee "${CONFIG}"
 
-exec "$GUNICORN" --daemon=false --config="${CONFIG}" flaskapp:app
+exec "$GUNICORN" --config="${CONFIG}" flaskapp:app
 
