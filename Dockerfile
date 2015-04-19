@@ -11,7 +11,7 @@ ENV AEROSPIKE_SHA256 0e055873632a278b5974b5db12c32a3912f2166ae1f0a7ed58271f9f4c1
 
 # Install Aerospike
 RUN apt-get update -y
-RUN apt-get install -y wget logrotate ca-certificates gcc python python-dev
+RUN apt-get install -y wget logrotate ca-certificates gcc python python-dev lua5.2
 RUN wget "http://www.aerospike.com/download/amc/${AEROSPIKE_VERSION}/artifact/debian6" -O amc-server.deb
 RUN echo "$AEROSPIKE_SHA256 *amc-server.deb" | sha256sum -c -
 RUN dpkg -i amc-server.deb
