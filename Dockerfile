@@ -18,8 +18,13 @@ RUN dpkg -i amc-server.deb
 RUN apt-get purge -y --auto-remove wget ca-certificates
 RUN rm -rf amc-server.deb /var/lib/apt/lists/*
 
+ADD etc/amc/config/gunicorn_config.py.template /etc/amc/config/gunicorn_config.py.template
+ADD usr/local/bin/templater.lua /usr/local/bin/templater.lua
+ADD usr/local/share/lua/5.2/fwwrt/simplelp.lua /usr/local/share/lua/5.2/fwwrt/simplelp.lua
+ADD amc-autoconfig /amc-autoconfig
+
 VOLUME ["/storage/logs"]
 
 EXPOSE 8081
 
-CMD ["/bin/bash"]
+CMD ["/amc-autoconfig"]
