@@ -1,0 +1,13 @@
+#!/bin/bash -eux
+
+PROJECT="/opt/amc"
+PIDFILE="/tmp/amc.pid"
+CRONJOB="${PROJECT}/bin/start_amc_cron.sh"
+GUNICORN="${PROJECT}/bin/gunicorn"
+CONFIG="/etc/amc/config/gunicorn_config.py"
+
+/usr/local/bin/templater.lua < "${CONFIG}.template" | tee "${CONFIG}"
+
+exec "$GUNICORN" --daemon=false
+
+

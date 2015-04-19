@@ -18,4 +18,8 @@ RUN dpkg -i amc-server.deb
 RUN apt-get purge -y --auto-remove wget ca-certificates
 RUN rm -rf amc-server.deb /var/lib/apt/lists/*
 
+VOLUME ["/storage/logs"]
+
+EXPOSE 8081
+
 CMD ["/bin/bash"]

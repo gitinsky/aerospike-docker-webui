@@ -1,0 +1,9 @@
+bind = "<%:BIND_ADDR%>:<%:BIND_PORT%>"
+pidfile = "/tmp/amc.pid"
+loglevel = "info"
+errorlog = "/storage/logs/error.log"
+workers = 1
+proc_name = "amc"
+chdir = "/opt/amc/server"
+timeout = 150
+worker_class = "eventlet"
